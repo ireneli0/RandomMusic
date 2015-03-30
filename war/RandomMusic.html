@@ -8,22 +8,23 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <!--                                                               -->
     <!-- Consider inlining CSS to reduce the number of requested files -->
     <!--                                                               -->
-    <link type="text/css" rel="stylesheet" href="RandomMusic.css">
+    <link type="text/css" rel="stylesheet" href="ShufflePlayer.css" media="all">
 
     <!--                                           -->
     <!-- Any title is fine                         -->
     <!--                                           -->
-    <title>Web Application Starter Project</title>
+    <title>Shuffle Player</title>
     
     <!--                                           -->
     <!-- This script loads your compiled module.   -->
     <!-- If you add any GWT meta tags, they must   -->
     <!-- be added before this line.                -->
     <!--                                           -->
-    <script type="text/javascript" language="javascript" src="randommusic/randommusic.nocache.js"></script>
+    <script type="text/javascript" language="javascript" src="shuffleplayer/shuffleplayer.nocache.js"></script>
   </head>
 
   <!--                                           -->
@@ -33,30 +34,72 @@
   <!--                                           -->
   <body>
 
-    <!-- OPTIONAL: include this if you want history support -->
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
-    
     <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-      </div>
-    </noscript>
+  	
+<!-- Shell -->	
+   <div class="shell">
+	  <!-- Header -->	
+	  <div id="header">
+		  <!-- Logout -->
+		  <div id="cart">
+              <br>
+                    <a href="" class="cart-link">Logout</a>
+			  <div class="cl">&nbsp;</div>
+		  </div>
+		  <!-- End Logout -->	
+	</div>
+	<!-- End Header -->
+	
+	<!-- Main -->
+	<div id="main">
+		<div class="cl">&nbsp;</div>
+		
+		<!-- Content -->
+        <br><br>
+		<div id="content">
+            <br><br><br>	
+            <!-- insert player here -->	
+            <h3>player inserted here</h3>
+		</div>
+		<!-- End Content -->
+		
+		<!-- Sidebar -->
+		<div id="sidebar">
+		
+			<!-- Categories -->
+			<div class="box categories">
+                <div class="box-content">
+                  <ul>
+                    <li class="last"><a href="" class = "home">Homepage<span></span></a></li>
+                  </ul>
+                </div>
+                
+				<h2>Player<span></span></h2>
+				<div class="box-content">
+					<ul>
+					    <li><a href="">My Shuffle Play</a></li>
+					    <li class = "last"><a href="">My Favorite</a></li>
+					</ul>
+				</div>
+				
+				<h2>Playlist<span></span></h2>
+				<div class="box-content">
+					<ul>
+					    <li><a href="">Study</a></li>
+					    <li class = "last"><a href="">Relax</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- End Categories -->
+			
+		</div>
+	   <!-- End Sidebar -->
+		
+	</div>
+	<!-- End Main -->
+	
+</div>	
+<!-- End Shell -->
 
-    <h1>Web Application Starter Project</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
   </body>
 </html>
