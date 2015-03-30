@@ -1,0 +1,2 @@
+serviceClass: ca.utoronto.ece.client.GreetingService
+path: 8665F4416CCABC5F77C11C66AF888502.gwt.rpc
