@@ -16,9 +16,27 @@
     <url-pattern>/randommusic/greet</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>LoginCheckOnLoadServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.LoginCheckOnLoadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LoginCheckOnLoadServlet</servlet-name>
+    <url-pattern>/LoginCheckOnLoadServlet</url-pattern>
+  </servlet-mapping>
+      <servlet>
+    <servlet-name>Clock3</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.Clock3</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Clock3</servlet-name>
+    <url-pattern>/Clock3</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>RandomMusic.html</welcome-file>
+    <welcome-file>RandomMusic.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>
