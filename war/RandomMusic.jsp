@@ -34,9 +34,23 @@
 		  <!-- Logout -->
 		  <div id="cart">
               <br>    
-    
-                    <a href='/LoginCheckOnLoadServlet'class="cart-link" id="loginText">Login</a>
-                    <a href="#" style="display:none" class="cart-link" id="logoutText">Logout</a>
+               	<%
+            		User user = (User)request.getSession().getAttribute("user");
+               		if(user==null){
+               		
+               		String loginURL = (String)request.getSession().getAttribute("loginURL");
+            		%>
+            		<a  href="<%=loginURL %>" class="cart-link" id="loginText">Login</a>
+            		<p><%=loginURL %></p>
+            	<%}else{
+            			
+            			String logoutURL = (String)request.getSession().getAttribute("logoutURL");
+            		%>
+            		<a href="/LogoutServlet"class="cart-link" id="logoutText">Logout</a>
+            		<p><%=logoutURL %></p>
+            	<%}
+               		%>
+
 		  </div>
 		  <!-- End Logout -->	
 	</div>
@@ -52,6 +66,12 @@
             <br><br><br>	
             <!-- insert player here -->	
             <h3>player inserted here</h3>
+            
+            <%if(user!=null){ %>
+
+            		<p><%=user.getNickname()%></p>
+            <%} %>
+
 		</div>
 		<!-- End Content -->
 		

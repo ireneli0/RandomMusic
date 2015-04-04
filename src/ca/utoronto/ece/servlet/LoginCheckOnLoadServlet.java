@@ -1,7 +1,6 @@
 package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,15 +30,23 @@ public class LoginCheckOnLoadServlet extends HttpServlet {
 		if(user!=null){
 			logoutURL = userService.createLogoutURL("/");
 			request.getSession().setAttribute("logoutURL", logoutURL);
-			request.getSession().setAttribute("user", user.getNickname());
-			System.out.println("set attribute User");
+			request.getSession().setAttribute("user", user);
+			System.out.println("logout_set attribute User");
+			
+			request.getSession().getServletContext().getRequestDispatcher("/RandomMusic.jsp").forward(request, response);
 		}
 		else{
 			loginURL = userService.createLoginURL("/");
 			request.getSession().setAttribute("loginURL", loginURL);
+			System.out.println("login_");
+			System.out.println(loginURL);
+			
+			request.getSession().getServletContext().getRequestDispatcher(loginURL).forward(request, response);
 		}
-		response.setContentType("text/html");
-		request.getSession().getServletContext().getRequestDispatcher("/RandomMusic.jsp").forward(request, response);
+		
+		//request.getSession().getServletContext().getRequestDispatcher("/RandomMusic.jsp").forward(request, response);
+		//response.setContentType("text/html");
+		//request.getSession().getServletContext().getRequestDispatcher("/RandomMusic.jsp").forward(request, response);
 		
 	}
 }

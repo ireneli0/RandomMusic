@@ -27,6 +27,7 @@ public class Clock3 extends HttpServlet {
             navBar = "<p>Welcome! <a href=\"" + userService.createLoginURL("/") +
                      "\">Sign in or register</a> to customize.</p>";
             tzForm = "";
+            System.out.println(userService.createLoginURL("/"));
             fmt.setTimeZone(new SimpleTimeZone(0, ""));
 
         } else {
@@ -39,6 +40,7 @@ public class Clock3 extends HttpServlet {
             navBar = "<p>Welcome, " + user.getNickname() + "! You can <a href=\"" +
                      userService.createLogoutURL("/") +
                      "\">sign out</a>.</p>";
+            System.out.println(userService.createLogoutURL("/"));
             tzForm = "<form action='/prefs' method='post'>" +
                 "<label for='tz_offset'>" +
                 "Timezone offset from UTC (can be negative):" +
