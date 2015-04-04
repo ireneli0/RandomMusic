@@ -41,13 +41,11 @@
                		String loginURL = (String)request.getSession().getAttribute("loginURL");
             		%>
             		<a  href="<%=loginURL %>" class="cart-link" id="loginText">Login</a>
-            		<p><%=loginURL %></p>
             	<%}else{
             			
             			String logoutURL = (String)request.getSession().getAttribute("logoutURL");
             		%>
             		<a href="/LogoutServlet"class="cart-link" id="logoutText">Logout</a>
-            		<p><%=logoutURL %></p>
             	<%}
                		%>
 
@@ -64,14 +62,12 @@
         <br><br>
 		<div id="content">
             <br><br><br>	
+
+            <%if(user!=null){ %>
+            		<p>Welcome <%=user.getNickname()%>!</p>
+            <%} %>
             <!-- insert player here -->	
             <h3>player inserted here</h3>
-            
-            <%if(user!=null){ %>
-
-            		<p><%=user.getNickname()%></p>
-            <%} %>
-
 		</div>
 		<!-- End Content -->
 		
