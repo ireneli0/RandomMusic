@@ -19,6 +19,7 @@
     <servlet>
     <servlet-name>LoginCheckOnLoadServlet</servlet-name>
     <servlet-class>ca.utoronto.ece.servlet.LoginCheckOnLoadServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
   </servlet>
   
   <servlet-mapping>
@@ -31,7 +32,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Clock3</servlet-name>
-    <url-pattern>/Clock3</url-pattern>
+    <url-pattern>/clock3</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
