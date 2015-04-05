@@ -1,15 +1,14 @@
 package ca.utoronto.ece.datastore;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import ca.utoronto.ece.entity.Playlist;
 import ca.utoronto.ece.entity.PlaylistLine;
 import ca.utoronto.ece.entity.Song;
-import ca.utoronto.ece.entity.User;
 
 public class PlaylistDAO {
 	EntityManagerFactory emf = EMF.get();
@@ -24,30 +23,19 @@ public class PlaylistDAO {
 			em.close();
 		}
 	}
-	
-	//find all playlist by user id
-	public Playlist findById(String id){
-		Playlist playlist = new Playlist();
-		
-		
-		return playlist;
-		
-	}
+
 	
 	//add song(playlistline) to playlist
 	public void addSongToPlaylist(String songId, Playlist playlist){
 		PlaylistLine playlistLine = new PlaylistLine();
-		playlistLine.setSongId(songId);
-		playlistLine.setPlaylistId(playlist.getId());
+		playlistLine.setSong(songId);
+		playlistLine.setPlaylist(playlist);
 		
 		try{
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			Playlist pl = em.find(Playlist.class, playlist.getId());
-			
-			HashSet playlistLines = (HashSet)pl.getPlaylistLines();
-			playlistLines.add(playlistLine);
-			pl.setPlaylistLines(playlistLines);
+			pl.getPlaylistLines().add(playlistLine);
 			
 			em.getTransaction().commit();
 			
@@ -56,6 +44,43 @@ public class PlaylistDAO {
 		}
 	}
 	
+	//find all playlists by user id
+	public List<Playlist> findAllPlaylistsByUserId(String id){
+		List<Playlist> results = null;
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("SELECT p from Playlist p WHERE userId = :currentUserId");
+			query.setParameter("currentUserId", id);
+			results = (List<Playlist>)query.getResultList();
+			
+			em.getTransaction().commit();
+		}finally{
+			em.close();
+		}
+		return results;
+	}
+	
+	//find all songs by playlist
+	public List<Song> findAllSongsByPlaylist(Playlist playlist){
+		List<Song> songs = null;
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("SELECT p from PlaylistLine p WHERE playlist = :currentPlaylist");
+			query.setParameter("currentPlaylist", playlist);
+			List <PlaylistLine>results = (List<PlaylistLine>)query.getResultList();
+			for(PlaylistLine p :results){
+				songs.add(p.getSong());
+			}
+			
+			em.getTransaction().commit();
+		}finally{
+			em.close();
+		}
+		return songs;
+	}
+
 	//delete song(playlistline) from playlist
 	public void deleteSongFromPlaylist(PlaylistLine playlistLine, Playlist playlist){
 		try{
@@ -69,5 +94,14 @@ public class PlaylistDAO {
 		}finally{
 			em.close();
 		}
+	}
+	
+	//find all playlist by user id
+	public Playlist findById(String id){
+		Playlist playlist = new Playlist();
+		
+		
+		return playlist;
+		
 	}
 }

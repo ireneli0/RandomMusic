@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.KeyFactory;
  *
  */
 @Entity(name="Song")
+@Embeddable
 
 public class Song implements Serializable {
 
@@ -24,7 +25,7 @@ public class Song implements Serializable {
 	public Song(String id){
 		this.id = KeyFactory.createKey("Song", id);
 	}
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	Key id;
 	
 	private String name;

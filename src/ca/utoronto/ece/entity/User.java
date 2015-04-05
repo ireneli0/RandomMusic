@@ -36,7 +36,7 @@ public class User implements Serializable {
    public void setId(com.google.appengine.api.datastore.Key id) {
 	   this.id = id;
    }
-
+   
    public String getName() {
 	   return name;
    }

@@ -1,5 +1,6 @@
 package ca.utoronto.ece.datastore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,6 +30,23 @@ public class SongDAO {
 			em.close();
 		}
 	}
+	
+	public List<String>getAllSongs(){
+		List<String> songs = new ArrayList<String>();
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("SELECT s.id FROM Song s");
+			songs = (List<String>)query.getResultList();
+			em.getTransaction().commit();
+		}finally{
+			em.close();
+		}
+		return songs;
+	}
+	
+	
+	
 	//get song by id
 	public Song getSongById(String id){
 		Song s;

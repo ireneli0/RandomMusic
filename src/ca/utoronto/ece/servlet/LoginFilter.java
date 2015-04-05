@@ -2,6 +2,7 @@ package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -55,6 +56,8 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
+			/*
+			//test for DAO methods
 			SongDAO songDao = new SongDAO();
 			String name = "If I had you";
 			String singer = "Adam Lambert";
@@ -62,21 +65,25 @@ public class LoginFilter implements Filter {
 			String description = "Adam";
 			songDao.addNewSong(name, singer, image, description);
 			
-			//PlaylistLine playlistLine = new PlaylistLine();
-			Set playlistLines = new HashSet();
+			List <String>songs = songDao.getAllSongs();
+			request.getSession().setAttribute("songs",songs);
+			
+			String plName = "Study";
+			Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
 			Playlist playlist = new Playlist();
 			
-			playlist.setUserId(userDao.getCurrentUserById(user.getEmail()).getId());
+			playlist.setUserId(user.getEmail());
 			playlist.setPlaylistLines(playlistLines);
+			playlist.setName(plName);
 			PlaylistDAO playlistDao = new PlaylistDAO();
 			playlistDao.addNewPlaylist(playlist);
 			
+			playlistDao.addSongToPlaylist("5634472569470976", playlist);
 			
-			//playlistDao.addSongToPlaylist(song, playlist);
 			
-			//entity user
-			userDao.getCurrentUserById(user.getEmail()).getId();
-					
+			//List<String> songs = playlistDao.findAllSongsByPlaylistId(playlist.getId());
+			*/
+
 			System.out.println("Filter_set logoutURL&set user");
 
 		}
@@ -86,7 +93,7 @@ public class LoginFilter implements Filter {
 			System.out.println("Filter_set loginURL&");
 		}
         HttpSession session = request.getSession();
-        
+      
         String path = ((HttpServletRequest) request).getRequestURI();
         if (path.startsWith("/LoginServlet")) {
             chain.doFilter(request, response); // Just continue chain.

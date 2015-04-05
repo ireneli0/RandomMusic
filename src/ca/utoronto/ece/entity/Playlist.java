@@ -28,11 +28,14 @@ public class Playlist implements Serializable {
 		this.id = KeyFactory.createKey("Playlist", id);
 	}
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	Key id;
 	
 	private String userId;
-	private Set playlistLines = new HashSet();
+	private String name;
+	
+	@OneToMany(mappedBy="playlist") @OrderBy("id")
+	private Set <PlaylistLine> playlistLines;
 	
 	public String getId() {
 		return KeyFactory.keyToString(id);
@@ -46,10 +49,13 @@ public class Playlist implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public Set getPlaylistLines() {
+	public Set<PlaylistLine> getPlaylistLines() {
 		return playlistLines;
 	}
-	public void setPlaylistLines(Set playlistLines) {
+	public void setPlaylistLines(Set<PlaylistLine> playlistLines) {
+		if (playlistLines == null){
+			playlistLines = new HashSet<PlaylistLine>();
+		}
 		this.playlistLines = playlistLines;
 	}
 	
@@ -61,5 +67,11 @@ public class Playlist implements Serializable {
 			count ++;
 		}
 		return count;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
