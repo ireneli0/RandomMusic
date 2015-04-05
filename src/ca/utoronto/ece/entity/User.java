@@ -11,7 +11,7 @@ import com.google.appengine.api.datastore.KeyFactory;
  * Entity implementation class for Entity: User
  *
  */
-@Entity
+@Entity(name="User")
 public class User implements Serializable {
 
 	

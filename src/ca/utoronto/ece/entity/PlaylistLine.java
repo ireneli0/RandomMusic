@@ -11,7 +11,7 @@ import com.google.appengine.api.datastore.KeyFactory;
  * Entity implementation class for Entity: PlaylistLine
  *
  */
-@Entity
+@Entity(name = "PlaylistLine")
 
 public class PlaylistLine implements Serializable {
 
@@ -24,7 +24,7 @@ public class PlaylistLine implements Serializable {
 	public PlaylistLine(String id){
 		this.id = KeyFactory.createKey("PlaylistLine", id);
 	}
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Key id;
 	
 	private Song song;
