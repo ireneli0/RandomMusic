@@ -1,6 +1,8 @@
 package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,7 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ca.utoronto.ece.datastore.PlaylistDAO;
+import ca.utoronto.ece.datastore.SongDAO;
 import ca.utoronto.ece.datastore.UserDAO;
+import ca.utoronto.ece.entity.Playlist;
+import ca.utoronto.ece.entity.PlaylistLine;
+import ca.utoronto.ece.entity.Song;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -48,6 +55,27 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
+			SongDAO songDao = new SongDAO();
+			String name = "If I had you";
+			String singer = "Adam Lambert";
+			String image = "image_Adam";
+			String description = "Adam";
+			songDao.addNewSong(name, singer, image, description);
+			
+			//PlaylistLine playlistLine = new PlaylistLine();
+			Set playlistLines = new HashSet();
+			Playlist playlist = new Playlist();
+			
+			playlist.setUserId(userDao.getCurrentUserById(user.getEmail()).getId());
+			playlist.setPlaylistLines(playlistLines);
+			PlaylistDAO playlistDao = new PlaylistDAO();
+			playlistDao.addNewPlaylist(playlist);
+			
+			
+			//playlistDao.addSongToPlaylist(song, playlist);
+			
+			//entity user
+			userDao.getCurrentUserById(user.getEmail()).getId();
 					
 			System.out.println("Filter_set logoutURL&set user");
 

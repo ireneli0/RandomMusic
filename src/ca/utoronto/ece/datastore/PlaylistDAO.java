@@ -25,7 +25,7 @@ public class PlaylistDAO {
 		}
 	}
 	
-	//find playlist by id
+	//find all playlist by user id
 	public Playlist findById(String id){
 		Playlist playlist = new Playlist();
 		
@@ -35,10 +35,10 @@ public class PlaylistDAO {
 	}
 	
 	//add song(playlistline) to playlist
-	public void addSongToPlaylist(Song song, Playlist playlist){
+	public void addSongToPlaylist(String songId, Playlist playlist){
 		PlaylistLine playlistLine = new PlaylistLine();
-		playlistLine.setSong(song);
-		playlistLine.setPlaylist(playlist);
+		playlistLine.setSongId(songId);
+		playlistLine.setPlaylistId(playlist.getId());
 		
 		try{
 			em = emf.createEntityManager();
@@ -51,7 +51,7 @@ public class PlaylistDAO {
 			
 			em.getTransaction().commit();
 			
-		}finally{
+		}finally{	
 			em.close();
 		}
 	}

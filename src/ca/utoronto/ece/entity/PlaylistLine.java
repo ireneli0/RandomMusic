@@ -27,8 +27,8 @@ public class PlaylistLine implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Key id;
 	
-	private Song song;
-	private Playlist playlist;
+	private String songId;
+	private String playlistId;
 
 	public String getId() {
 		return KeyFactory.keyToString(id);
@@ -36,17 +36,17 @@ public class PlaylistLine implements Serializable {
 	public void setId(com.google.appengine.api.datastore.Key id) {
 		this.id = id;
 	}
-	public Song getSong() {
-		return song;
+	public String getSongId() {
+		return songId;
 	}
-	public void setSong(Song song) {
-		this.song = song;
+	public void setSongId(String songId) {
+		this.songId = songId;
 	}
-	public Playlist getPlaylist() {
-		return playlist;
+	public String getPlaylistId() {
+		return playlistId;
 	}
-	public void setPlaylist(Playlist playlist) {
-		this.playlist = playlist;
+	public void setPlaylistId(String playlistId) {
+		this.playlistId = playlistId;
 	}
    
 }

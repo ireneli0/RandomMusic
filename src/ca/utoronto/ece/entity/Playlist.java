@@ -31,7 +31,7 @@ public class Playlist implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Key id;
 	
-	private User user;
+	private String userId;
 	private Set playlistLines = new HashSet();
 	
 	public String getId() {
@@ -40,11 +40,11 @@ public class Playlist implements Serializable {
 	public void setId(com.google.appengine.api.datastore.Key id) {
 		this.id = id;
 	}
-	public User getUser() {
-		return user;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public Set getPlaylistLines() {
 		return playlistLines;
