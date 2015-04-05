@@ -28,7 +28,7 @@ public class PlaylistDAO {
 	//add song(playlistline) to playlist
 	public void addSongToPlaylist(String songId, Playlist playlist){
 		PlaylistLine playlistLine = new PlaylistLine();
-		playlistLine.setSong(songId);
+		//playlistLine.setSong(songId);
 		playlistLine.setPlaylist(playlist);
 		
 		try{
