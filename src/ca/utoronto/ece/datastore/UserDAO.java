@@ -25,10 +25,9 @@ public class UserDAO {
 	}
 	
 	//addNewUser
-	public void addNewUser(String id, String name, String image){
+	public void addNewUser(String id, String name){
 		User user = new User(id);
 		user.setName(name);
-		user.setImage(image);
 		try{
 			em = emf.createEntityManager();
 			em.persist(user);

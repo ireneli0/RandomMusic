@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ca.utoronto.ece.datastore.UserDAO;
+
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -40,6 +42,13 @@ public class LoginFilter implements Filter {
 			logoutURL = userService.createLogoutURL("/");
 			request.getSession().setAttribute("logoutURL", logoutURL);
 			request.getSession().setAttribute("user", user);
+			UserDAO userDao = new UserDAO();
+			if(userDao.checkUserExists(user.getEmail())==false){
+				//does not exist
+				userDao.addNewUser(user.getEmail(), user.getNickname());
+				System.out.println("Filter_add new user");
+			}
+					
 			System.out.println("Filter_set logoutURL&set user");
 
 		}

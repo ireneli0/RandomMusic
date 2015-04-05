@@ -1,18 +1,43 @@
 package ca.utoronto.ece.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.*;
 
-public class Playlist {
-	private String id;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
+/**
+ * Entity implementation class for Entity: Playlist
+ *
+ */
+@Entity
+
+public class Playlist implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
+
+	public Playlist() {
+		super();
+	}
+	public Playlist(String id){
+		this.id = KeyFactory.createKey("Playlist", id);
+	}
+	
+	@Id
+	Key id;
+	
 	private User user;
 	private Set playlistLines = new HashSet();
+	
 	public String getId() {
-		return id;
+		return KeyFactory.keyToString(id);
 	}
-	public void setId(String id) {
+	public void setId(com.google.appengine.api.datastore.Key id) {
 		this.id = id;
 	}
 	public User getUser() {
@@ -27,6 +52,7 @@ public class Playlist {
 	public void setPlaylistLines(Set playlistLines) {
 		this.playlistLines = playlistLines;
 	}
+	
 	public int getCount(){
 		int count = 0;
 		Iterator it = playlistLines.iterator();

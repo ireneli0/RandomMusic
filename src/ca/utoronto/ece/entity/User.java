@@ -1,34 +1,50 @@
 package ca.utoronto.ece.entity;
 
-public class User {
-	
-	public User(String id) {
-		super();
-		this.id = id;
-	}
-	
-	private String id;
-	private String name;
-	private String image;
-	
+import java.io.Serializable;
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+import javax.persistence.*;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
+/**
+ * Entity implementation class for Entity: User
+ *
+ */
+@Entity
+public class User implements Serializable {
+
 	
+	private static final long serialVersionUID = 1L;
+
+	public User(){
+		
+	}
+	public User(String id) {
+		this.id = KeyFactory.createKey("User", id);
+		
+	}
+   @Id
+   Key id;
+   
+   private String name;
+
+   public String getId() {
+	   return KeyFactory.keyToString(id);
+   }
+
+   public void setId(com.google.appengine.api.datastore.Key id) {
+	   this.id = id;
+   }
+
+   public String getName() {
+	   return name;
+   }
+
+   public void setName(String name) {
+	   this.name = name;
+   }
+   
+   
+   
 }

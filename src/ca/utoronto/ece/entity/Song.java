@@ -1,19 +1,41 @@
 package ca.utoronto.ece.entity;
 
-public class Song {
-	public Song(String id) {
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
+/**
+ * Entity implementation class for Entity: Song
+ *
+ */
+@Entity
+
+public class Song implements Serializable {
+
+	
+	private static final long serialVersionUID = 1L;
+
+	public Song() {
 		super();
-		this.id = id;
 	}
-	private String id;
+	public Song(String id){
+		this.id = KeyFactory.createKey("Song", id);
+	}
+	@Id
+	Key id;
+	
 	private String name;
 	private String singer;
 	private String image;
 	private String description;
+
 	public String getId() {
-		return id;
+		return KeyFactory.keyToString(id);
 	}
-	public void setId(String id) {
+	public void setId(com.google.appengine.api.datastore.Key id) {
 		this.id = id;
 	}
 	public String getName() {
