@@ -1,6 +1,10 @@
 package ca.utoronto.ece.entity;
 
 public class Song {
+	public Song(String id) {
+		super();
+		this.id = id;
+	}
 	private String id;
 	private String name;
 	private String singer;

@@ -1,9 +1,17 @@
 package ca.utoronto.ece.entity;
 
 public class User {
+	
+	public User(String id) {
+		super();
+		this.id = id;
+	}
+	
 	private String id;
 	private String name;
 	private String image;
+	
+
 	public String getId() {
 		return id;
 	}

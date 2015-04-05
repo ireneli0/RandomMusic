@@ -49,7 +49,11 @@ public class LoginFilter implements Filter {
 			System.out.println("Filter_set loginURL&");
 		}
         HttpSession session = request.getSession();
-        if (session == null || session.getAttribute("user") == null) {
+        
+        String path = ((HttpServletRequest) request).getRequestURI();
+        if (path.startsWith("/LoginServlet")) {
+            chain.doFilter(request, response); // Just continue chain.
+        } else if (session == null || session.getAttribute("user") == null) {
   
         	request.getRequestDispatcher("/RandomMusic.jsp").forward(request,response);
             //response.sendRedirect((String)session.getAttribute("loginURL"));
@@ -62,7 +66,6 @@ public class LoginFilter implements Filter {
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-
 	}
 
 }

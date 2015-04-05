@@ -40,7 +40,7 @@
                		
                		String loginURL = (String)request.getSession().getAttribute("loginURL");
             		%>
-            		<a  href="<%=loginURL %>" class="cart-link" id="loginText">Login</a>
+            		<a  href="/LoginServlet" class="cart-link" id="loginText">Login</a>
             	<%}else{
             			
             			String logoutURL = (String)request.getSession().getAttribute("logoutURL");
