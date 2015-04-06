@@ -1,3 +1,2 @@
 # Module randommusic
 # RPC service class, partial path of RPC policy file
-ca.utoronto.ece.client.GreetingService, 2BBE4E07EB712A8B83C6DDC560A06F67.gwt.rpc

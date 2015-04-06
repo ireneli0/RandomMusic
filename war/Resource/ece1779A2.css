@@ -1,0 +1,116 @@
+.login{
+    float:right;
+    text-decoration:none;
+    text-align:center;
+    margin-right:30px;
+    color:#000000;
+    background-color:#FFFFE0;
+    height:30px;
+    width:100px;
+    display:block;
+    font-size:15px;
+    line-height:30px;
+}
+
+.login:hover{
+    background-color:#F5DEB3;
+}
+
+.bar{
+    float:right;
+    font-size:14px;
+    margin-right:30px;
+    margin-top:10px;
+}
+
+.bar a{ margin-left:10px; float:right; text-decoration:none; color:#000000; }
+
+.bar a:hover{ text-decoration:underline; }
+
+.menu{
+    margin-left:50px;
+    list-style:none;
+    float:left;
+}
+
+
+.list{
+    height:40px;
+    width:200px;
+    line-height:40px;
+    text-align:center;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+.list2{
+    height:40px;
+    width:200px;
+    line-height:40px;
+    text-align:center;
+    display:inline-block;
+    margin-bottom:10px;
+    background-color:#F0FFF0;
+}
+
+.btn_list{ display:block; color:#000000; background-color:#F0FFF0; width:300px; height:40px; }
+
+.list a{ display:block; color:#000000; background-color:#F0FFF0; width:200px; height:40px; text-decoration:none; }
+
+.list a:hover{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none;}
+
+.list a:active{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none; }
+
+.button{
+    background:url("line_heart.png") no-repeat;
+}
+
+.musicplayer{
+    position:fixed;
+    left:450px;
+    top:120px;
+    background-color:#FFF8DC;
+    float:right;
+    margin-right:200px;
+    margin-top:50px;
+    height:240px;
+    width:550px;
+    border:1px;
+    box-shadow:10px 10px 10px 10px #cccccc;
+}
+
+.lastsong{
+    display:inline-block;
+    margin-left:40px;
+}
+
+.nextsong{
+    display:inline-block;
+    margin-left:10px;
+}
+
+.playsong{
+    display:inline-block;
+    margin-left:10px;
+}
+
+.pausesong{
+    display:inline-block;
+    margin-left:10px;
+}
+
+#progressBar{
+    margin:0px 5px;
+    width:290px;
+    height:3px;
+    background-color:#FCFCFC;
+    margin-bottom:20px;
+    margin-left:15px;
+}
+
+#progress{
+    height:inherit;
+    background-color:#FFAEB9;
+    float:left;
+}
+
