@@ -67,7 +67,7 @@ public class PlaylistDAO {
 		}finally{	
 			em.close();
 		}
-	}
+	}	
 	
 	//find all playlists by user id
 	public List<Playlist> findAllPlaylistsByUserId(String id){
@@ -80,6 +80,10 @@ public class PlaylistDAO {
 			results = (List<Playlist>)query.getResultList();
 			
 			em.getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			
 		}finally{
 			em.close();
 		}
@@ -100,6 +104,10 @@ public class PlaylistDAO {
 			}
 			
 			em.getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			
 		}finally{
 			em.close();
 		}
@@ -115,6 +123,10 @@ public class PlaylistDAO {
 			
 			
 			em.getTransaction().commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
 			
 		}finally{
 			em.close();

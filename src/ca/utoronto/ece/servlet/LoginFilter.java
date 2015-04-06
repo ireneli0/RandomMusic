@@ -19,7 +19,6 @@ import ca.utoronto.ece.datastore.PlaylistDAO;
 import ca.utoronto.ece.datastore.UserDAO;
 import ca.utoronto.ece.entity.Playlist;
 import ca.utoronto.ece.entity.PlaylistLine;
-import ca.utoronto.ece.entity.Song;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -55,7 +54,7 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
-			
+			/*
 			//test for DAO methods
 			String name = "If I had you";
 			String singer = "Adam Lambert";
@@ -63,17 +62,15 @@ public class LoginFilter implements Filter {
 			String description = "Adam";
 			
 			String plName = "Study";
-			//Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
+			Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
 			Playlist playlist = new Playlist();
+			playlist.setName(plName);
+			playlist.setPlaylistLines(playlistLines);
+			
 			PlaylistDAO playlistDao = new PlaylistDAO();
 			playlistDao.addNewPlaylist(playlist);
 			
-			//playlistDao.addNewPlaylist(plName, user.getEmail());
-			
 			playlistDao.addSongToPlaylist(name, singer, image, description, playlist);
-			
-			/*
-			//List<String> songs = playlistDao.findAllSongsByPlaylistId(playlist.getId());
 			*/
 
 			System.out.println("Filter_set logoutURL&set user");
