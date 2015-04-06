@@ -19,17 +19,19 @@ public class Song implements Serializable {
 	public Song() {
 		super();
 	}
-	public Song(String songId, String name, String singer, String image){
+	public Song(String songId, String name, String singer, String image, String album){
 		this.songId = songId;
 		this.name = name;
 		this.singer = singer;
 		this.image = image;
+		this.album = album;
 	}
 
 	private String songId;
 	private String name;
 	private String singer;
 	private String image;
+	private String album;
 
 	public String getName() {
 		return name;
@@ -54,6 +56,12 @@ public class Song implements Serializable {
 	}
 	public void setSongId(String songId) {
 		this.songId = songId;
+	}
+	public String getAlbum() {
+		return album;
+	}
+	public void setAlbum(String album) {
+		this.album = album;
 	}
 	
 }

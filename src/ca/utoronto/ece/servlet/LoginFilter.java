@@ -54,7 +54,7 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
-			
+			/*
 			//test for DAO methods
 			String id = "a231000";
 			String name = "Need A Boss";
@@ -72,7 +72,7 @@ public class LoginFilter implements Filter {
 			playlistDao.addNewPlaylist(playlist);
 			
 			playlistDao.addSongToPlaylist(id,name, singer, image, playlist);
-			
+			*/
 			System.out.println("Filter_set logoutURL&set user");
 			
 		}
