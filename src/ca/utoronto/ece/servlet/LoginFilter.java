@@ -54,27 +54,27 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
-			/*
+			
 			//test for DAO methods
-			String name = "If I had you";
-			String singer = "Adam Lambert";
+			String id = "a231000";
+			String name = "Need A Boss";
+			String singer = "Shareefa";
 			String image = "image_Adam";
-			String description = "Adam";
 			
 			String plName = "Study";
 			Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
 			Playlist playlist = new Playlist();
 			playlist.setName(plName);
+			playlist.setUserId(user.getEmail());
 			playlist.setPlaylistLines(playlistLines);
 			
 			PlaylistDAO playlistDao = new PlaylistDAO();
 			playlistDao.addNewPlaylist(playlist);
 			
-			playlistDao.addSongToPlaylist(name, singer, image, description, playlist);
-			*/
-
+			playlistDao.addSongToPlaylist(id,name, singer, image, playlist);
+			
 			System.out.println("Filter_set logoutURL&set user");
-
+			
 		}
 		else{
 			loginURL = userService.createLoginURL("/");

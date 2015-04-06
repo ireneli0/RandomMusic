@@ -46,14 +46,13 @@ public class PlaylistDAO {
 
 	
 	//add song(playlistline) to playlist
-	public void addSongToPlaylist(String songName, String singer, String image, String description, Playlist playlist){
+	public void addSongToPlaylist(String id, String songName, String singer, String image, Playlist playlist){
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		try{
-
 			Playlist pl = em.find(Playlist.class, playlist.getId());
 			PlaylistLine playlistLine = new PlaylistLine();
-			Song song = new Song(songName, singer, image, description);
+			Song song = new Song(id, songName, singer, image);
 			playlistLine.setSong(song);
 			playlistLine.setPlaylist(pl);
 			pl.getPlaylistLines().add(playlistLine);
