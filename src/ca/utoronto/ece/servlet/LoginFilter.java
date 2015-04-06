@@ -54,6 +54,11 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
+			
+			
+//			List <ca.utoronto.ece.entity.User> users = (List<ca.utoronto.ece.entity.User>)userDao.getCurrentUsers();
+//			request.getSession().setAttribute("users", users);
+			
 			/*
 			//test for DAO methods
 			String id = "a231000";
@@ -73,6 +78,9 @@ public class LoginFilter implements Filter {
 			
 			playlistDao.addSongToPlaylist(id,name, singer, image, playlist);
 			*/
+			
+			
+			
 			System.out.println("Filter_set logoutURL&set user");
 			
 		}

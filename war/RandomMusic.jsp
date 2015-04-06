@@ -51,9 +51,10 @@
             		<span class="bar">Welcome <%=user.getNickname() %>><a href="" >Your Playlists</a></span>
             	<%}
                		%>
+               		
 
 
-  <%if(user==null) {%>
+<%if(user==null) {%>
   <br><br>
 <img style="margin-left:30px" src="Resource/logo.png" alt="Logo" height="160" width="260">
 
@@ -74,7 +75,7 @@
       <li><span class="list2">Work</span></a></li>
     </ui>
   </div>
-  <%}else{
+ <%}else{
   %>
 <br>
 <!-- Main Content -->
@@ -106,8 +107,9 @@
       <br>
     </ui>
   </div>
-  <%} %>
-  
+ <%} %>
+ <!-- end of Menu settings --> 
+ 
   <br><br>
   
   
@@ -143,7 +145,7 @@
                   </div>
     
         <input id="play_key" class="form-control" value="a239851">
-<!--  style="display: none;" -->
+
         <div class="col-md-6">
           <h3 id=""></h3>
           <h4>Playstate <p id="playState"></p></h4>

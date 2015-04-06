@@ -1,5 +1,6 @@
 package ca.utoronto.ece.datastore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,24 +42,23 @@ public class UserDAO {
 	}	
 	
 	//getCurrentUserById
-	public User getCurrentUserById(String id){
+	public List<User> getCurrentUsers(){
 
-		User u;
+		List <User> results = new ArrayList<User>();
 		try{
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
-			Query query = em.createQuery("SELCET u FROM User WHERE id = :currentId");
-			query.setParameter("currentId", id);
-			query.setMaxResults(1);
-			List <User> results = (List <User>)query.getResultList();
-			u = results.get(0);
+			Query query = em.createQuery("SELCET u FROM User u ");
+
+			results = (List <User>)query.getResultList();
 			em.getTransaction().commit();
 			
+
 		}finally{
 			em.close();
 			
 		}
-		return u;
+		return results;
 	}	
 	
 }
