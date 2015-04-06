@@ -1,6 +1,8 @@
 package ca.utoronto.ece.datastore;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,21 +25,44 @@ public class PlaylistDAO {
 			em.close();
 		}
 	}
+	public void addNewPlaylist(String name, String userId){
+		try{
+			em = emf.createEntityManager();
+			Playlist playlist = new Playlist();
+			Set <PlaylistLine> playlistLines = new HashSet<PlaylistLine>();
+			
+			playlist.setName(name);
+			playlist.setUserId(userId);
+			playlist.setPlaylistLines(playlistLines);
+			
+			em.getTransaction().begin();
+			em.persist(playlist);
+			em.getTransaction().commit();
+			
+		}finally{
+			em.close();
+		}
+	}
 
 	
 	//add song(playlistline) to playlist
-	public void addSongToPlaylist(String songId, Playlist playlist){
-		PlaylistLine playlistLine = new PlaylistLine();
-		//playlistLine.setSong(songId);
-		playlistLine.setPlaylist(playlist);
-		
+	public void addSongToPlaylist(String songName, String singer, String image, String description, Playlist playlist){
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		try{
-			em = emf.createEntityManager();
-			em.getTransaction().begin();
+
 			Playlist pl = em.find(Playlist.class, playlist.getId());
+			PlaylistLine playlistLine = new PlaylistLine();
+			Song song = new Song(songName, singer, image, description);
+			playlistLine.setSong(song);
+			playlistLine.setPlaylist(pl);
 			pl.getPlaylistLines().add(playlistLine);
 			
 			em.getTransaction().commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
 			
 		}finally{	
 			em.close();

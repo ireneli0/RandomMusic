@@ -4,3 +4,6 @@ gaeDatanucleusVersion=v2
 gaeDeployDialogSettings=
 gaeHrdEnabled=true
 gaeLaunchAppInBrowser=true
+googleCloudSqlEnabled=false
+localDevMySqlEnabled=true
+ormEnhancementInclusions=src/|test/|src/ca/utoronto/ece/datastore/EMF.java|src/ca/utoronto/ece/entity/Playlist.java|src/ca/utoronto/ece/entity/PlaylistLine.java|src/ca/utoronto/ece/entity/Song.java|src/ca/utoronto/ece/entity/User.java

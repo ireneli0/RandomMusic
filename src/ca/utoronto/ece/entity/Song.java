@@ -4,41 +4,33 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 
 /**
  * Entity implementation class for Entity: Song
  *
  */
-@Entity(name="Song")
+
 @Embeddable
 
 public class Song implements Serializable {
-
 	
 	private static final long serialVersionUID = 1L;
 
 	public Song() {
 		super();
 	}
-	public Song(String id){
-		this.id = KeyFactory.createKey("Song", id);
+	public Song(String name, String singer, String image, String description){
+		this.name = name;
+		this.singer = singer;
+		this.image = image;
+		this.description = description;
 	}
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	Key id;
-	
+
 	private String name;
 	private String singer;
 	private String image;
 	private String description;
 
-	public String getId() {
-		return KeyFactory.keyToString(id);
-	}
-	public void setId(com.google.appengine.api.datastore.Key id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}

@@ -28,13 +28,13 @@ public class Playlist implements Serializable {
 		this.id = KeyFactory.createKey("Playlist", id);
 	}
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Key id;
 	
 	private String userId;
 	private String name;
 	
-	@OneToMany(mappedBy="playlist") @OrderBy("id")
+	@OneToMany(mappedBy="playlist",cascade = CascadeType.ALL) @OrderBy("id")
 	private Set <PlaylistLine> playlistLines;
 	
 	public String getId() {

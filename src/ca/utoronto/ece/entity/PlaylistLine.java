@@ -24,9 +24,10 @@ public class PlaylistLine implements Serializable {
 	public PlaylistLine(String id){
 		this.id = KeyFactory.createKey("PlaylistLine", id);
 	}
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Key id;
 	
+	@Embedded
 	private Song song;
 	
 	@ManyToOne
