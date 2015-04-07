@@ -29,7 +29,6 @@ public class LoginFilter implements Filter {
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -54,33 +53,6 @@ public class LoginFilter implements Filter {
 				userDao.addNewUser(user.getEmail(), user.getNickname());
 				System.out.println("Filter_add new user");
 			}
-			
-			
-//			List <ca.utoronto.ece.entity.User> users = (List<ca.utoronto.ece.entity.User>)userDao.getCurrentUsers();
-//			request.getSession().setAttribute("users", users);
-			
-			/*
-			//test for DAO methods
-			String id = "a231000";
-			String name = "Need A Boss";
-			String singer = "Shareefa";
-			String image = "image_Adam";
-			String album = "asdga";
-			
-			String plName = "Study";
-			Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
-			Playlist playlist = new Playlist();
-			playlist.setName(plName);
-			playlist.setUserId(user.getEmail());
-			playlist.setPlaylistLines(playlistLines);
-			
-			PlaylistDAO playlistDao = new PlaylistDAO();
-			playlistDao.addNewPlaylist(playlist);
-			
-			playlistDao.addSongToPlaylist(id,name, singer, image, album, playlist);
-			*/
-			
-			
 			
 			System.out.println("Filter_set logoutURL&set user");
 			

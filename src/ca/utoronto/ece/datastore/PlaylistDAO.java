@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import ca.utoronto.ece.entity.Playlist;
 import ca.utoronto.ece.entity.PlaylistLine;
@@ -133,11 +134,29 @@ public class PlaylistDAO {
 	}
 	
 	//find all playlist by user id
-	public Playlist findById(String id){
+	public Playlist getPlaylistById(String userId,String playlistName){
 		Playlist playlist = new Playlist();
-		
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			TypedQuery<Playlist> query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+userId+"'"+"and p.name='"+playlistName+"'", Playlist.class);
+			playlist = query.getSingleResult();
+			
+			em.getTransaction().commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			
+		}finally{
+			em.close();
+		}
 		
 		return playlist;
 		
 	}
+	
+	
+	
+	
 }

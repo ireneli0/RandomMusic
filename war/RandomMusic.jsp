@@ -15,9 +15,6 @@
   	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheets/global.css">
   	
-<!--     <audio id="myplayer">
-        <source src="Resource/1.mp3">
-            </audio> -->
     <script>
         //initialize the EventListner on progress bar
 /*         var audio = document.getElementById("myplayer");
@@ -82,7 +79,16 @@
     <ui>
         <li ><span class="shuffleplaylist"><a>Shuffle Play</a></span>
         </li>
-      <br>
+     
+        <h4 style="display:inline-block">PlayLists</h4>
+        <input type="button" id="addList" value="+" style="margin-left:160px;border:0px;background:#ffffff;font-size:19px;" onClick="addList()">
+        <p style="line-height:0.1pt">____________________________________</p>       
+        <form action="" id="form1">
+        <input type="text" id="listName" placeholder="ListName" style="width:195px">
+        <input type="submit" id="btn_confirm" style="margin-left:5px;background:#ffffff;border-size:1px;" value="Add" onClick="confirm()" ><!--  -->
+        </form>
+        <br>
+        
       <li ><span class="list"><a href="">My Favorite</a></span>
           <a href="#"><input type="image" id="MyFavorite" class=someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
@@ -104,6 +110,21 @@
  <%} %>
  <!-- end of Menu settings --> 
  
+ <script type="text/javascript">
+ function addList(){
+     var overlay = document.getElementById("form1");
+      
+     overlay.style.display = "block";    
+       
+   }
+function confirm(){
+    var overlay = document.getElementById("form1");
+    
+    overlay.style.display = "none";  
+}
+   
+   </script>
+   
   <br><br>
   
     <div id="ajaxGetUserServletResponse"></div>

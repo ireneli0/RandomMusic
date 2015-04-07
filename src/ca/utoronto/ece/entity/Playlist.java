@@ -26,6 +26,10 @@ public class Playlist implements Serializable {
 	}
 	public Playlist(String id){
 		this.id = KeyFactory.createKey("Playlist", id);
+	}	
+	public Playlist(String name, String userId){
+		this.name = name;
+		this.userId = userId;
 	}
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,7 +42,7 @@ public class Playlist implements Serializable {
 	private Set <PlaylistLine> playlistLines;
 	
 	public String getId() {
-		return KeyFactory.keyToString(id);
+		return  KeyFactory.keyToString(id);
 	}
 	public void setId(com.google.appengine.api.datastore.Key id) {
 		this.id = id;
