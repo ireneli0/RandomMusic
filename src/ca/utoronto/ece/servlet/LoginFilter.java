@@ -65,6 +65,7 @@ public class LoginFilter implements Filter {
 			String name = "Need A Boss";
 			String singer = "Shareefa";
 			String image = "image_Adam";
+			String album = "asdga";
 			
 			String plName = "Study";
 			Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
@@ -76,7 +77,7 @@ public class LoginFilter implements Filter {
 			PlaylistDAO playlistDao = new PlaylistDAO();
 			playlistDao.addNewPlaylist(playlist);
 			
-			playlistDao.addSongToPlaylist(id,name, singer, image, playlist);
+			playlistDao.addSongToPlaylist(id,name, singer, image, album, playlist);
 			*/
 			
 			

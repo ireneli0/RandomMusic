@@ -86,15 +86,15 @@
     <img style="margin-left:0px" src="Resource/logo.png" alt="Logo" height="190" width="300">
     <ui>
         <li ><span class="list"><a href="">Random Play</span></a>
-            <a href="#"><input type="image" id="RP"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+            <a href="#"><input type="image" id="RP"   src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
         </li>
       <br>
       <li ><span class="list"><a href="">My Favourite</span></a>
-          <a href="#"><input type="image" id="MF"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+          <a href="#"><input type="image" id="MF" onclick="getInfo()"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
       <li ><span class="list"><a href="">Relax</span></a>
-          <a href="#"><input type="image" id="RL"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+          <a href="#"><input type="image" id="RL" onclick="getInfo1()"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
       <li ><span class="list"><a href="">Study</span></a>
@@ -112,6 +112,24 @@
  
   <br><br>
   
+       <script type="text/javascript">
+         function getInfo(){
+            var album_num = document.getElementById("play_key").value;  
+            var artist_name = document.getElementById('artist').innerHTML;
+            var song_name = document.getElementById('track').innerHTML;
+            var album_name = document.getElementById('album').innerHTML;
+            
+            
+          }
+         
+         function getInfo1(){
+        	 var album_num = document.getElementById("play_key").value;
+             var artist_name = document.getElementById('artist').innerHTML;
+             var song_name = document.getElementById('track').innerHTML;
+             var album_name = document.getElementById('album').innerHTML;         
+         }
+          
+       </script>
   
   <div class="musicplayer">
       
