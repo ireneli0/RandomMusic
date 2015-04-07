@@ -23,6 +23,8 @@ THE SOFTWARE.
 // a global variable that will hold a reference to the api swf once it has loaded
 var apiswf = null;
 
+
+
 $(document).ready(function() {
   // on page load use SWFObject to load the API swf into div#apiswf
   var flashvars = {
@@ -38,7 +40,32 @@ $(document).ready(function() {
       'apiswf', // the ID of the element that will be replaced with the SWF
       1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
-
+  $('.someClass').click(function(){
+	  var playlistName = $(this).attr('id');
+      $.ajax({
+          url : '/AddSongToPlaylistServlet?playlistName='+playlistName,
+          data : {
+        	  songId : $('#play_key').val(),
+        	  name:$('#artist').text(),
+        	  singer:$('#track').text(),
+        	  album:$('#album').text(),
+        	  image:$('#art').attr('src')
+          },
+          success : function(responseText) {
+              $('#ajaxGetUserServletResponse').text(responseText);
+          }
+      });
+  });
+  
+  $('.shuffleplaylist').click(function(){
+	  var random = Math.random();
+	  var album = random.toString().substring(0,8)*1000000;
+	  var alphabet = "a";
+	  var album_random = alphabet.concat(album.toString());
+	  $('#play_key').val(album_random);
+	  apiswf.rdio_play($('#play_key').val());
+  });
+  
   // set up the controls
   $('#play').click(function() {
     apiswf.rdio_play($('#play_key').val());
@@ -46,7 +73,14 @@ $(document).ready(function() {
   $('#stop').click(function() { apiswf.rdio_stop(); });
   $('#pause').click(function() { apiswf.rdio_pause(); });
   $('#previous').click(function() { apiswf.rdio_previous(); });
-  $('#next').click(function() { apiswf.rdio_next(); });
+  $('#next').click(function() { 
+	  var random = Math.random();
+	  var album = random.toString().substring(0,8)*1000000;
+	  var alphabet = "a";
+	  var album_random = alphabet.concat(album.toString());
+	  $('#play_key').val(album_random);
+	  apiswf.rdio_play($('#play_key').val());
+	  });
 });
 
 

@@ -24,7 +24,46 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
+    <servlet-name>AddSongToPlaylistServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.AddSongToPlaylistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddSongToPlaylistServlet</servlet-name>
+    <url-pattern>/AddSongToPlaylistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteSongFromPlaylistServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.DeleteSongFromPlaylistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteSongFromPlaylistServlet</servlet-name>
+    <url-pattern>/DeleteSongFromPlaylistServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>AddNewPlaylistServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.AddNewPlaylistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewPlaylistServlet</servlet-name>
+    <url-pattern>/AddNewPlaylistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeletePlaylistServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.DeletePlaylistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeletePlaylistServlet</servlet-name>
+    <url-pattern>/DeletePlaylistServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <servlet>  
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>ca.utoronto.ece.server.GreetingServiceImpl</servlet-class>
   </servlet>

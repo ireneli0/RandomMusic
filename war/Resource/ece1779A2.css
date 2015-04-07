@@ -33,6 +33,14 @@
     float:left;
 }
 
+.shuffleplaylist{
+    height:40px;
+    width:200px;
+    line-height:40px;
+    text-align:center;
+    display:inline-block;
+    margin-bottom:10px;
+}
 
 .list{
     height:40px;
@@ -60,6 +68,12 @@
 .list a:hover{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none;}
 
 .list a:active{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none; }
+
+.shuffleplaylist a{ display:block; color:#000000; background-color:#F0FFF0; width:200px; height:40px; text-decoration:none; }
+
+.shuffleplaylist a:hover{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none;}
+
+.shuffleplaylist a:active{ display:block; color:#ffffff; background-color:#E0EEE0; width:200px; height:40px; text-decoration:none; }
 
 .button{
     background:url("line_heart.png") no-repeat;

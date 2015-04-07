@@ -15,19 +15,20 @@
   	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheets/global.css">
   	
-    <audio id="myplayer">
+<!--     <audio id="myplayer">
         <source src="Resource/1.mp3">
-            </audio>
+            </audio> -->
     <script>
         //initialize the EventListner on progress bar
-        var audio = document.getElementById("myplayer");
-        audio.addEventListener("timeupdate", updateProgress, false);
+/*         var audio = document.getElementById("myplayer");
+        audio.addEventListener("timeupdate", updateProgress, false); */
         //update progress bar while song is played
         function updateProgress() {
             var progress = document.getElementById("progress");
             var value = 0;
-            if (audio.currentTime > 0) {
-                value = Math.floor((100 / audio.duration) * audio.currentTime);
+            var position = document.getElementById("position").innerHTML;
+            if (position > 0) {
+                value = Math.floor((100 / 180) * position);
             }
             progress.style.width = value + "%";
         }
@@ -64,15 +65,9 @@
   <!-- Menu -->
   <div class="menu">
     <ui>
-      <li><span class="list2">Shuffle Play</span></a></li>
+        <li ><span class="shuffleplaylist" ><a>Shuffle Play</a></span>
+        </li>
       <br>
-      <li><span class="list2">My Favarite</span></a></li>
-      <br>
-      <li><span class="list2">Relax</span></a></li>
-      <br>
-      <li><span class="list2">Study</span></a></li>
-      <br>
-      <li><span class="list2">Work</span></a></li>
     </ui>
   </div>
  <%}else{
@@ -85,24 +80,23 @@
   <div class="menu">
     <img style="margin-left:0px" src="Resource/logo.png" alt="Logo" height="190" width="300">
     <ui>
-        <li ><span class="list"><a href="">Random Play</span></a>
-            <a href="#"><input type="image" id="RP"   src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+        <li ><span class="shuffleplaylist"><a>Shuffle Play</a></span>
         </li>
       <br>
-      <li ><span class="list"><a href="">My Favourite</span></a>
-          <a href="#"><input type="image" id="MF" onclick="getInfo()"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+      <li ><span class="list"><a href="">My Favorite</a></span>
+          <a href="#"><input type="image" id="MyFavorite" class=someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
-      <li ><span class="list"><a href="">Relax</span></a>
-          <a href="#"><input type="image" id="RL" onclick="getInfo1()"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+      <li ><span class="list"><a href="">Relax</a></span>
+          <a href="#"><input type="image" id="RL" class=someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
-      <li ><span class="list"><a href="">Study</span></a>
-          <a href="#"><input type="image" id="ST"  src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+      <li ><span class="list"><a href="">Study</a></span>
+          <a href="#"><input type="image" id="ST" class=someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
-      <li ><span class="list"><a href="">Work</span></a>
-          <a href="#"><input type="image" id="WK"  src="Resource/line_heart.png" height="40"  align="absmiddle"></a>
+      <li ><span class="list"><a href="">Work</a></span>
+          <a href="#"><input type="image" id="WK" class=someClass src="Resource/line_heart.png" height="40"  align="absmiddle"></a>
       </li>
       <br>
     </ui>
@@ -112,31 +106,14 @@
  
   <br><br>
   
-       <script type="text/javascript">
-         function getInfo(){
-            var album_num = document.getElementById("play_key").value;  
-            var artist_name = document.getElementById('artist').innerHTML;
-            var song_name = document.getElementById('track').innerHTML;
-            var album_name = document.getElementById('album').innerHTML;
-            
-            
-          }
-         
-         function getInfo1(){
-        	 var album_num = document.getElementById("play_key").value;
-             var artist_name = document.getElementById('artist').innerHTML;
-             var song_name = document.getElementById('track').innerHTML;
-             var album_name = document.getElementById('album').innerHTML;         
-         }
-          
-       </script>
-  
+    <div id="ajaxGetUserServletResponse"></div>
+    
   <div class="musicplayer">
       
       <img style="float:left" src="Resource/logo.png" alt="Logo" height="240" width="240" id="art">
           <div style="float:right">
               
-              <p style="font-size:23px;font-style:bold;line-height:0.01;margin-left:6px;margin-top:26px" id="track">Song Name</h3>
+              <p style="font-size:23px;font-style:bold;line-height:0.01;margin-left:6px;margin-top:26px" id="track">Song Name</p>
               <p style="font-size:16px;line-height:1;margin-left:10px;"id="artist">Singer Name</p>
               <p style="font-size:16px;line-height:0.01;margin-left:10px;"id="album">Album Name</p>
               <br><br>
@@ -162,12 +139,12 @@
               <input type="image" id="next" onclick="" src="Resource/next.png" height="42" >
                   </div>
     
-        <input id="play_key" class="form-control" value="a239851">
+        <input id="play_key" class="form-control" value="a239111">
 
         <div class="col-md-6">
           <h3 id=""></h3>
           <h4>Playstate <p id="playState"></p></h4>
-          <h4>Position <p id="position"></p></h4>
+          <h4>Position <p id="position" onchange="updateProgress()"></p></h4>
         </div>
       <!-- displaying frequency  -->
             <div id="freq" class="frequency">
