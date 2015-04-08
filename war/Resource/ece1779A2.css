@@ -143,3 +143,31 @@
 #form1{
 	display:none;
 }
+
+
+.showPlaylists{
+    text-decoration:none;
+    color:#000000;
+}
+.playlist{
+    float:right;
+    margin-left:50px;
+}
+
+.showContents{
+    width:700px;
+    border-bottom:1px solid #cccccc;
+}
+
+.showContents_tr{
+    position:fixed;
+    left:312px;
+    background-color:#EDEDED;
+    width:700px;
+    height:15px;
+}
+
+.showContents_img{
+    width:100px;
+    height:100px;
+}
