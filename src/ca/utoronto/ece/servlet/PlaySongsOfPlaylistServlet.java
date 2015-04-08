@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PlaySongsOfPlaylist extends HttpServlet {
+public class PlaySongsOfPlaylistServlet extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -22,4 +22,5 @@ public class PlaySongsOfPlaylist extends HttpServlet {
 			throws IOException, ServletException{
 		
 	}
+
 }
