@@ -68,8 +68,15 @@
     <servlet-name>PlaySongsOfPlaylistServlet</servlet-name>
     <url-pattern>/PlaySongsOfPlaylistServlet</url-pattern>
   </servlet-mapping>
-  
-  
+
+  <servlet>
+    <servlet-name>DisplaySongsOfPlaylist</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.DisplaySongsOfPlaylist</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplaySongsOfPlaylist</servlet-name>
+    <url-pattern>/DisplaySongsOfPlaylist</url-pattern>
+  </servlet-mapping>  
   
   <servlet>  
     <servlet-name>greetServlet</servlet-name>

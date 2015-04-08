@@ -152,6 +152,9 @@
 .showContents{
     width:700px;
     border-bottom:1px solid #cccccc;
+    position:fixed;
+    top:250px;
+    left:150px;
 }
 
 .showContents_tr{
