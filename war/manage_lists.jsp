@@ -73,6 +73,7 @@
             
     <%
       	Set<Song> songs  = (HashSet<Song>)request.getSession().getAttribute("songs");
+    	String currentPlaylistName = (String)request.getSession().getAttribute("currentPlaylistName");
       if(songs==null){
     	  
       }else{
@@ -84,12 +85,13 @@
             </td>
             <td width="500px">
                 <br>
-               <p style="margin-left:10px;font-size:16px"><%=s.getName() %></p>
-               <p style="margin-left:13px;font-size:13px;line-height:0.01;"><%=s.getSinger() %></p>
-               <p style="margin-left:13px;font-size:13px"><%=s.getAlbum() %></p>
+               <p style="margin-left:10px;font-size:16px" id="songName"><%=s.getName() %></p>
+               <p style="margin-left:13px;font-size:13px;line-height:0.01;"id="singerName"><%=s.getSinger() %></p>
+               <p style="margin-left:13px;font-size:13px" id="albumName"><%=s.getAlbum() %></p>
+               <p style="display=none" id="currentPlaylistName"><%=currentPlaylistName %></p>
             </td>
             <td>
-               <a><img src="Resource/delete.png" alt="delete" height="50" style="margin-left:23px;margin-top:10px;"></a>
+               <a href="#"><img class=someClass src="Resource/delete.png" id=<%=s.getSongId() %> alt="delete" height="50" style="margin-left:23px;margin-top:10px;"></a>
             </td>
         </tr>
       <%  

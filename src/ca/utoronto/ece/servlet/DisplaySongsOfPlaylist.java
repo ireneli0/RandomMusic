@@ -42,6 +42,7 @@ public class DisplaySongsOfPlaylist extends HttpServlet {
 			songs.add(l.getSong());	
 		} 
 		request.getSession().setAttribute("songs", songs);
+		request.getSession().setAttribute("currentPlaylistName", playlistName);
 
 		request.getSession().getServletContext().getRequestDispatcher("/manage_lists.jsp").forward(request, response);
 	}
