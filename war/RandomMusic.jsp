@@ -84,12 +84,12 @@
     	  
       }else{
     	  for(Playlist p: playlists){
-        	  %>
-       <li ><span class="list"><a href=""><%=p.getName() %></a></span>
-          <a href="#"><input type="image" id=<%=p.getName() %> class=someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
+      %>
+       <li ><span class="list"><a href="#" class= playClass ><%=p.getName() %></a></span>
+          <a href="#"><input type="image" id=<%=p.getName() %> class= someClass src="Resource/line_heart.png"  height="40"  align="absmiddle"></a>
       </li>
       <br>
-        	   	<%  
+      <%  
     	  }
       }
       %>
@@ -124,49 +124,40 @@
             </div>
           
       <!-- end of frequency -->
-            <br><br>
+            <br><br><br>
             
               <!-- Progress Bar-->
               <div id="progressBar">
                   <div id="progress"></div>
               </div>
-          </div>
           
           
+          <br>
           <!-- Control Components-->
          <div id="apiswf"></div>               
-          <div class="lastsong">
-              <input type="image" id="previous" onclick="" src="Resource/last.png" height="42" >
-                  </div>
-          <div class="playsong" id="playsong">
-              <input type="image" id="play" onclick="" src="Resource/play.png" height="42" >
+          <div class="playsong" id="playsong" >
+              <input type="image" id="play" onclick="" src="Resource/play.png" height="42" style="margin-left:56px" >
                   </div>
           <div class="pausesong" id="pausesong">
               <input type="image" id="stop" onclick="" src="Resource/pause.png" height="42" >
                   </div>
           <div class="nextsong">
-              <input type="image" id="next" onclick="" src="Resource/next.png" height="42" >
+              <input type="image" id="next" onclick="" src="Resource/next.png" height="42" >       
           </div>
-         
+        </div>    
 
-
-         <input style="display:none" id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
-    
-
-
-        <div style="float:bottom"> 
-          
-          <p style="font-size:21px;font-style:bold;line-height:0.01;margin-left:4px;margin-top:10px" id="track">Song Name</p>
+        <br><br>
+        <div style="background-color:#FFEFD5"> 
+          <p style="visibility:hidden">1</p>
+          <p style="font-size:21px;font-style:bold;line-height:0.01;margin-left:8px;margin-top:10px" id="track">Song Name</p>
           <br>
-          <p style="font-size:16px;line-height:1;margin-left:6px;"id="artist">Singer Name</p>
-          <p style="font-size:16px;line-height:0.01;margin-left:6px;"id="album">Album Name</p>
+          <p style="font-size:16px;line-height:1;margin-left:10px;"id="artist">Singer Name</p>
+          <p style="font-size:16px;line-height:0.01;margin-left:10px;"id="album">Album Name</p>
           <br>
-          <p id="playState"></p>
-          <p id="position"></p>
         </div>
 
       
-      
+               <input style="display:none" id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
       
           <script type="text/javascript">
               function play(){
@@ -179,9 +170,9 @@
               audio.pause();
           }
           
-              </script>
+           </script>
           
-          </div>
+    </div>
 
 </div>
   

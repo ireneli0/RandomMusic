@@ -87,15 +87,10 @@
     float:right;
     margin-right:200px;
     margin-top:50px;
-    height:380px;
+    height:370px;
     width:550px;
     border:1px;
     box-shadow:10px 10px 10px 10px #cccccc;
-}
-
-.lastsong{
-    display:inline-block;
-    margin-left:40px;
 }
 
 .nextsong{

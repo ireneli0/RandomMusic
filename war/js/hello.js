@@ -40,6 +40,20 @@ $(document).ready(function() {
       'apiswf', // the ID of the element that will be replaced with the SWF
       1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
+  $('.playClass').click(function(){
+	  var playlistName = $(this).text();
+      $.ajax({
+          url : '/PlaySongsOfPlaylistServlet?playlistName='+playlistName,
+          data : {
+        	  songId : $('#play_key').val(),
+          },
+          success : function(responseText) {
+              $('#ajaxGetUserServletResponse').text(responseText);
+              $('#ajaxGetUserServletResponse').fadeIn(400).delay(3000).fadeOut(400);
+          }
+      });
+  }); 
+  
   $('.someClass').click(function(){
 	  var playlistName = $(this).attr('id');
       $.ajax({
