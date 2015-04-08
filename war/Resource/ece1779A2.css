@@ -147,22 +147,14 @@
 .playlist{
     float:right;
     margin-left:50px;
+    top:200px;
+    left:200px;
 }
 
 .showContents{
     width:700px;
     border-bottom:1px solid #cccccc;
-    position:fixed;
-    top:250px;
-    left:150px;
-}
-
-.showContents_tr{
-    position:fixed;
-    left:312px;
-    background-color:#EDEDED;
-    width:700px;
-    height:15px;
+    border-top:20px solid #EDEDED;
 }
 
 .showContents_img{

@@ -68,9 +68,7 @@
 <br><br>
   <div class="playlists">
       <table class="showContents" cellspacing="0px">
-        <tr>
-        <div class="showContents_tr"></div>
-        </tr>
+
 
             
     <%
