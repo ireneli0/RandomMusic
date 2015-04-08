@@ -158,7 +158,8 @@ public class PlaylistDAO {
 			em.getTransaction().begin();
 			TypedQuery<Playlist> query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+userId+"'"+"and p.name='"+playlistName+"'", Playlist.class);
 			playlist = query.getSingleResult();
-			
+			em.detach(playlist.getPlaylistLines());
+
 			em.getTransaction().commit();
 			
 		}catch(Exception e){
