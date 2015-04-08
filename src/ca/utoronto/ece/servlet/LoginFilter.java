@@ -1,6 +1,7 @@
 package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,18 +43,24 @@ public class LoginFilter implements Filter {
 		User user = userService.getCurrentUser();
 		String loginURL;
 		String logoutURL;
-		
+		List<Playlist> playlists = new ArrayList<Playlist>();
 		if(user!=null){
 			logoutURL = userService.createLogoutURL("/");
 			request.getSession().setAttribute("logoutURL", logoutURL);
 			request.getSession().setAttribute("user", user);
 			UserDAO userDao = new UserDAO();
 			if(userDao.checkUserExists(user.getEmail())==false){
-				//does not exist
+				//new user
 				userDao.addNewUser(user.getEmail(), user.getNickname());
+				playlists = null;
 				System.out.println("Filter_add new user");
+			}else{
+				//old user
+				PlaylistDAO playlistDao = new PlaylistDAO();
+				playlists = playlistDao.findAllPlaylistsByUserId(user.getEmail());
+				
 			}
-			
+			request.getSession().setAttribute("playlists", playlists);
 			System.out.println("Filter_set logoutURL&set user");
 			
 		}

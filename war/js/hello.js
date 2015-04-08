@@ -53,9 +53,31 @@ $(document).ready(function() {
           },
           success : function(responseText) {
               $('#ajaxGetUserServletResponse').text(responseText);
+              $('#ajaxGetUserServletResponse').fadeIn(400).delay(3000).fadeOut(400);
           }
       });
   });
+  
+  $('#btn_confirm').click(function(){
+	  var playlistName = $('#listName').val();
+	  $('#addList').click();
+
+      $.ajax({
+          url : '/AddNewPlaylistServlet?playlistName='+playlistName,
+          data : {songId : $('#play_key').val()
+          },
+          success : function(responseToAddPlaylist) {
+              $('#ajaxAddPlaylistResponse').text(responseToAddPlaylist);
+              $('#ajaxAddPlaylistResponse').fadeIn(400).delay(3000).fadeOut(400);
+          }
+      });
+  });
+  
+  jQuery('#addList').live('click', function(event) {        
+      jQuery('#addNewPlaylistInfo').toggle('show');
+      $('#listName').val('');
+      event.preventDefault();
+ });
   
   $('.shuffleplaylist').click(function(){
 	  var random = Math.random();
@@ -152,6 +174,11 @@ callback_object.positionChanged = function positionChanged(position) {
   //The position within the track changed to position seconds.
   // This happens both in response to a seek and during playback.
   $('#position').text(position);
+  var value = 0;
+  if (position > 0) {
+	  value = Math.floor((100 / 180) * position);
+  }
+  $('#progress').width(value+"%");
 }
 
 callback_object.queueChanged = function queueChanged(newQueue) {
@@ -180,7 +207,7 @@ callback_object.updateFrequencyData = function updateFrequencyData(arrayAsString
   var arr = arrayAsString.split(',');
 
   $('#freq div').each(function(i) {
-    $(this).width(parseInt(parseFloat(arr[i])*500));
+    $(this).width(parseInt(parseFloat(arr[i])*200));
   })
 }
 

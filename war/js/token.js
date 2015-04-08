@@ -29,5 +29,5 @@ THE SOFTWARE.
 //   {"status": "ok", "result": "YOUR_PLAYBACK_TOKEN"}
 // then update playback_token below with YOUR_PLAYBACK_TOKEN and the domain below with YOUR_DOMAIN
 
-var playback_token = "GB5VIfYUAesQjWR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmVjZTE3NzlyYW5kb21tdXNpYy5hcHBzcG90LmNvbVlztS794kbyX0q2gMknGNM=";
+var playback_token = "GB5VJGfeAesQjWR2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmVjZTE3NzlyYW5kb21tdXNpYy5hcHBzcG90LmNvbTaSrgEMEIJeYL5SY4l8aMw=";
 var domain = "ece1779randommusic.appspot.com";

@@ -36,19 +36,11 @@ public class AddSongToPlaylistServlet extends HttpServlet {
 		
 		User user = (User)request.getSession().getAttribute("user");
 		
-		//Set <PlaylistLine>playlistLines = new HashSet<PlaylistLine>();
-		//Playlist playlist = new Playlist();
-		//playlist.setName(plName);
-		//playlist.setUserId(user.getEmail());
-		//playlist.setPlaylistLines(playlistLines);
-		//playlistDao.addNewPlaylist(playlist);
-		
 		PlaylistDAO playlistDao = new PlaylistDAO();
+		//playlistDao.addNewPlaylist(playlistName, user.getEmail());
+		Playlist currentPlaylist = playlistDao.getPlaylistById(user.getEmail(), playlistName);
+		playlistDao.addSongToPlaylist(songId, name, singer, image, album, currentPlaylist);
 		
-		//playlistDao.addNewPlaylist("Work", user.getEmail());
-		Playlist currentPlaylist = playlistDao.getPlaylistById(user.getEmail(), "My Favorite");
-		
-		playlistDao.addSongToPlaylist(songId,name, singer, image, album, currentPlaylist);
         response.setContentType("text/plain");
         response.getWriter().write(songId+" "+name+" "+singer+" "+album+" "+image+"\n"+playlistName+" "+currentPlaylist.getName()+" " +currentPlaylist.getUserId()+" "+currentPlaylist.getId());
 		

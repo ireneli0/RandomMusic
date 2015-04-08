@@ -1,6 +1,7 @@
 package ca.utoronto.ece.entity;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -54,13 +55,31 @@ public class Playlist implements Serializable {
 		this.userId = userId;
 	}
 	public Set<PlaylistLine> getPlaylistLines() {
-		return playlistLines;
+		return Collections.unmodifiableSet(playlistLines);
+		//return playlistLines;
 	}
 	public void setPlaylistLines(Set<PlaylistLine> playlistLines) {
 		if (playlistLines == null){
 			playlistLines = new HashSet<PlaylistLine>();
 		}
+//		for (PlaylistLine playlistLine : playlistLines) {
+//			playlistLine.setPlaylist(this);
+//		}
 		this.playlistLines = playlistLines;
+	}
+
+	public void addPlaylistLine(PlaylistLine line) {
+		line.setPlaylist(this);
+	}
+	public void removePlaylistLine(PlaylistLine line) { 
+		line.setPlaylist(null);
+	}
+
+	public void internalAddPlaylistLine(PlaylistLine line) { 
+		playlistLines.add(line);
+	}
+	public void internalRemovePlaylistLine(PlaylistLine line) { 
+		playlistLines.remove(line); 
 	}
 	
 	public int getCount(){

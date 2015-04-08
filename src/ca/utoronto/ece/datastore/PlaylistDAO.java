@@ -37,14 +37,13 @@ public class PlaylistDAO {
 			playlist.setPlaylistLines(playlistLines);
 			
 			em.getTransaction().begin();
-			em.persist(playlist);
+			em.merge(playlist);
 			em.getTransaction().commit();
 			
 		}finally{
 			em.close();
 		}
 	}
-
 	
 	//add song(playlistline) to playlist
 	public void addSongToPlaylist(String id, String songName, String singer, String image, String album, Playlist playlist){
@@ -56,7 +55,7 @@ public class PlaylistDAO {
 			Song song = new Song(id, songName, singer, image, album);
 			playlistLine.setSong(song);
 			playlistLine.setPlaylist(pl);
-			pl.getPlaylistLines().add(playlistLine);
+			//pl.getPlaylistLines().add(playlistLine);
 			
 			em.getTransaction().commit();
 			
@@ -68,16 +67,34 @@ public class PlaylistDAO {
 			em.close();
 		}
 	}	
+	//check playlistname exists
+	public List checkPlaylistNameExists(String playlistName, String userId){
+		List results = null;
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+userId+"'"+"and p.name='"+playlistName+"'");
+			results = query.getResultList();
+			
+			em.getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			
+		}finally{
+			em.close();
+		}
+		return results;
+	}
 	
 	//find all playlists by user id
-	public List<Playlist> findAllPlaylistsByUserId(String id){
+	public List<Playlist> findAllPlaylistsByUserId(String userId){
 		List<Playlist> results = null;
 		try{
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
-			Query query = em.createQuery("SELECT p from Playlist p WHERE userId = :currentUserId");
-			query.setParameter("currentUserId", id);
-			results = (List<Playlist>)query.getResultList();
+			TypedQuery<Playlist> query = em.createQuery("SELECT p from Playlist p WHERE p.userId ='"+userId+"'", Playlist.class);
+			results = query.getResultList();
 			
 			em.getTransaction().commit();
 		}catch(Exception e){
