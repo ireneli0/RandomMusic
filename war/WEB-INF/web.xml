@@ -60,6 +60,14 @@
     <url-pattern>/DeletePlaylistServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>PlaySongsOfPlaylistServlet</servlet-name>
+    <servlet-class>ca.utoronto.ece.servlet.PlaySongsOfPlaylistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlaySongsOfPlaylistServlet</servlet-name>
+    <url-pattern>/PlaySongsOfPlaylistServlet</url-pattern>
+  </servlet-mapping>
   
   
   

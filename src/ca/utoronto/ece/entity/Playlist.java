@@ -39,7 +39,7 @@ public class Playlist implements Serializable {
 	private String userId;
 	private String name;
 	
-	@OneToMany(mappedBy="playlist",cascade = CascadeType.ALL) @OrderBy("id")
+	@OneToMany(mappedBy="playlist") @OrderBy("id")
 	private Set <PlaylistLine> playlistLines;
 	
 	public String getId() {
@@ -55,8 +55,8 @@ public class Playlist implements Serializable {
 		this.userId = userId;
 	}
 	public Set<PlaylistLine> getPlaylistLines() {
-		return Collections.unmodifiableSet(playlistLines);
-		//return playlistLines;
+		//return Collections.unmodifiableSet(playlistLines);
+		return playlistLines;
 	}
 	public void setPlaylistLines(Set<PlaylistLine> playlistLines) {
 		if (playlistLines == null){
