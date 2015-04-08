@@ -10,7 +10,7 @@
 
 <body>
 <br>
-<span class="bar">Welcome |<a href="" >Your Music Player</a></span>
+<span class="bar">Welcome |<a href="RandomMusic.jsp" >Your Music Player</a></span>
     <img style="margin-left:10px" src="Resource/logo.png" alt="Logo" height="150" width="250">
 
 

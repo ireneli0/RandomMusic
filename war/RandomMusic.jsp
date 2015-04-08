@@ -33,7 +33,7 @@
             			String logoutURL = (String)request.getSession().getAttribute("logoutURL");
             		%>
             		<a href="/LogoutServlet" class="login" id="logoutText">Logout</a>
-            		<span class="bar">Welcome <%=user.getNickname() %>><a href="" >Your Playlists</a></span>
+            		<span class="bar">Welcome <%=user.getNickname() %>><a href="manage_lists.jsp" >Your Playlists</a></span>
             	<%}
                		%>
                		
