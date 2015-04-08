@@ -50,6 +50,7 @@ $(document).ready(function() {
           success : function(responseText) {
               $('#ajaxGetUserServletResponse').text(responseText);
               $('#ajaxGetUserServletResponse').fadeIn(400).delay(3000).fadeOut(400);
+              
           }
       });
   }); 

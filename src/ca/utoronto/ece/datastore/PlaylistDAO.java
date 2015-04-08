@@ -37,7 +37,7 @@ public class PlaylistDAO {
 			playlist.setPlaylistLines(playlistLines);
 			
 			em.getTransaction().begin();
-			em.merge(playlist);
+			em.persist(playlist);
 			em.getTransaction().commit();
 			
 		}finally{
@@ -108,14 +108,14 @@ public class PlaylistDAO {
 	}
 	
 	//find all songs by playlist
-	public List<Song> findAllSongsByPlaylist(Playlist playlist){
-		List<Song> songs = null;
+	public Set<Song> findAllSongsByPlaylist(Playlist playlist){
+		Set<Song> songs = null;
 		try{
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			Query query = em.createQuery("SELECT p from PlaylistLine p WHERE playlist = :currentPlaylist");
 			query.setParameter("currentPlaylist", playlist);
-			List <PlaylistLine>results = (List<PlaylistLine>)query.getResultList();
+			Set <PlaylistLine>results = (Set<PlaylistLine>)query.getResultList();
 			for(PlaylistLine p :results){
 				songs.add(p.getSong());
 			}
@@ -158,7 +158,13 @@ public class PlaylistDAO {
 			em.getTransaction().begin();
 			TypedQuery<Playlist> query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+userId+"'"+"and p.name='"+playlistName+"'", Playlist.class);
 			playlist = query.getSingleResult();
-			em.detach(playlist.getPlaylistLines());
+			
+			//dummy operations for lazy fetching 
+			for(PlaylistLine p: playlist.getPlaylistLines()){
+				p.getSong().getName();
+
+			}
+			em.detach(playlist);
 
 			em.getTransaction().commit();
 			
@@ -169,12 +175,7 @@ public class PlaylistDAO {
 		}finally{
 			em.close();
 		}
-		
 		return playlist;
-		
 	}
-	
-	
-	
 	
 }

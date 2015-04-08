@@ -32,8 +32,8 @@ public class AddNewPlaylistServlet extends HttpServlet {
 		    response.getWriter().write("Playlist name cannot be empty, Please input again!");
 		}else{
 			PlaylistDAO playlistDao = new PlaylistDAO();
-			List playlist = playlistDao.checkPlaylistNameExists(playlistName, user.getEmail());
-			if(playlist.size()>0){
+			List playlists = playlistDao.checkPlaylistNameExists(playlistName, user.getEmail());
+			if(playlists.size()>0){
 				response.setContentType("text/plain");
 			    response.getWriter().write("You've already had the same "+ playlistName+" playlist!");
 			}else{

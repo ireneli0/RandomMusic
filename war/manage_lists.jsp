@@ -1,3 +1,7 @@
+<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import ="ca.utoronto.ece.entity.Playlist" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +11,28 @@
     
 </head>
 
-
 <body>
 <br>
-<span class="bar">Welcome |<a href="RandomMusic.jsp" >Your Music Player</a></span>
+
+<%
+            		User user = (User)request.getSession().getAttribute("user");
+               		if(user==null){
+               		
+               		String loginURL = (String)request.getSession().getAttribute("loginURL");
+            		%>
+            		<a href="/LoginServlet" class="login" id="loginText">Login</a>
+            	<%}else{
+            			
+            			String logoutURL = (String)request.getSession().getAttribute("logoutURL");
+            		%>
+            		<a href="/LogoutServlet" class="login" id="logoutText">Logout</a>
+            		<span class="bar">Welcome <%=user.getNickname() %>><a href="RandomMusic.jsp" >Your Music Player</a></span>
+            	<%}
+               		%>
+
+
     <img style="margin-left:10px" src="Resource/logo.png" alt="Logo" height="150" width="250">
+
 
 
 <br>
@@ -55,7 +76,6 @@
   </div>
   
 </div>
-  
 
 </body>
 </html>

@@ -1,8 +1,6 @@
 package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +11,6 @@ import com.google.appengine.api.users.User;
 
 import ca.utoronto.ece.datastore.PlaylistDAO;
 import ca.utoronto.ece.entity.Playlist;
-import ca.utoronto.ece.entity.PlaylistLine;
 
 public class AddSongToPlaylistServlet extends HttpServlet {
 	/**
