@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+ <body background="Resource/background.jpg">
 <br>
 				<%
             		User user = (User)request.getSession().getAttribute("user");
@@ -157,7 +157,7 @@
         </div>
 
       
-               <input id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
+               <input style="display:none" id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
       
     </div>
 

@@ -164,31 +164,4 @@ public class PlaylistDAO {
 		return playlist;
 	}
 	
-/*	//find a single playlistLine by songId and playlistName
-	public Playlist getPlaylistLineById(String songId,Playlist playlist){
-		PlaylistLine playlistLine = new PlaylistLine();
-		try{
-			em = emf.createEntityManager();
-			em.getTransaction().begin();
-			TypedQuery<Playlist> query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+songId+"'"+"and p.name='"+playlistName+"'", Playlist.class);
-			playlist = query.getSingleResult();
-			
-			//dummy operations for lazy fetching 
-			for(PlaylistLine p: playlist.getPlaylistLines()){
-				p.getSong().getName();
-
-			}
-			em.detach(playlist);
-
-			em.getTransaction().commit();
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			em.getTransaction().rollback();
-			
-		}finally{
-			em.close();
-		}
-		return playlist;
-	}*/
 }
