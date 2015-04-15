@@ -157,21 +157,8 @@
         </div>
 
       
-               <input style="display:none" id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
+               <input id="play_key" class="form-control" value="a239111"><!--style="visibility:hidden"-->
       
-          <script type="text/javascript">
-              function play(){
-                  var audio = document.getElementById("myplayer");
-                  audio.play();
-                  audio.loop=true;
-              }
-          function pause(){
-              var audio = document.getElementById("myplayer");
-              audio.pause();
-          }
-          
-           </script>
-          
     </div>
 
 </div>

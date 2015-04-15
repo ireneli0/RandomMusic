@@ -23,7 +23,15 @@ THE SOFTWARE.
 // a global variable that will hold a reference to the api swf once it has loaded
 var apiswf = null;
 
+//playMode: shuffle=1, playlist=0
+var playMode = 1;
+var playlistNameForPlayListMode = null;
+var songsCount = 0;
+var songIds;
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 $(document).ready(function() {
   // on page load use SWFObject to load the API swf into div#apiswf
@@ -41,16 +49,34 @@ $(document).ready(function() {
       1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
   $('.playClass').click(function(){
-	  var playlistName = $(this).text();
+	  playlistNameForPlayListMode = $(this).text();
+	  var url = '/PlaySongsOfPlaylistServlet?playlistName='+playlistNameForPlayListMode;
+	  
       $.ajax({
-          url : '/PlaySongsOfPlaylistServlet?playlistName='+playlistName,
-          data : {
-        	  songId : $('#play_key').val(),
-          },
-          success : function(responseText) {
-              $('#ajaxGetUserServletResponse').text(responseText);
+    	  dataType:"json",
+          url : '/PlaySongsOfPlaylistServlet?playlistName='+playlistNameForPlayListMode,
+          success : function(data) {
+        	  var data1 = data[0];
+        	  var data2 = data[1];
+        	  
+              $('#ajaxGetUserServletResponse').text(data1.tagContent);
               $('#ajaxGetUserServletResponse').fadeIn(400).delay(3000).fadeOut(400);
+              //set play mode to playlistMode
+              playMode = 0;
+              songsCount = data1.songsCount;
               
+              //play songs from the selected list
+              if(songsCount==0){
+            	  //empty list then set play mode back to shuffle mode 1
+            	  playMode = 1;
+              }else{
+            	  var header="songId";
+            	  for(i=1;i<=songsCount;i++){
+            		  var realIndex = header+ i.toString();
+            		  songIds = (songIds||[]).concat(data2[realIndex]); 
+            	  }
+            	  $('#play').trigger('click');
+              }
           }
       });
   }); 
@@ -61,8 +87,8 @@ $(document).ready(function() {
           url : '/AddSongToPlaylistServlet?playlistName='+playlistName,
           data : {
         	  songId : $('#play_key').val(),
-        	  name:$('#artist').text(),
-        	  singer:$('#track').text(),
+        	  singer:$('#artist').text(),
+        	  name:$('#track').text(),
         	  album:$('#album').text(),
         	  image:$('#art').attr('src')
           },
@@ -95,6 +121,8 @@ $(document).ready(function() {
  });
   
   $('.shuffleplaylist').click(function(){
+	  //set playmode to shuffle 1
+	  playMode = 1;
 	  var random = Math.random();
 	  var album = random.toString().substring(0,8)*1000000;
 	  var alphabet = "a";
@@ -105,18 +133,42 @@ $(document).ready(function() {
   
   // set up the controls
   $('#play').click(function() {
-    apiswf.rdio_play($('#play_key').val());
+	  if(playMode==1){
+		  //shuffle mode 1
+		  apiswf.rdio_play($('#play_key').val());
+	  }else{
+		  //playlist mode 0
+		  if(songsCount >0){
+			  var index = getRandomInt(0,songsCount-1);
+			  var randomSongId = songIds[index];
+			  //alert(index);
+			  $('#play_key').val(randomSongId);
+			  apiswf.rdio_play($('#play_key').val());
+		  }
+	  }
   });
   $('#stop').click(function() { apiswf.rdio_stop(); });
   $('#pause').click(function() { apiswf.rdio_pause(); });
   $('#previous').click(function() { apiswf.rdio_previous(); });
   $('#next').click(function() { 
-	  var random = Math.random();
-	  var album = random.toString().substring(0,8)*1000000;
-	  var alphabet = "a";
-	  var album_random = alphabet.concat(album.toString());
-	  $('#play_key').val(album_random);
-	  apiswf.rdio_play($('#play_key').val());
+	  if(playMode ==1){
+		  //shuffle mode 1
+		  var random = Math.random();
+		  var album = random.toString().substring(0,8)*1000000;
+		  var alphabet = "a";
+		  var album_random = alphabet.concat(album.toString());
+		  $('#play_key').val(album_random);
+		  apiswf.rdio_play($('#play_key').val());
+	  }else{
+		  //playlist mode 0
+		  if(songsCount >0){
+			  var index = getRandomInt(0,songsCount-1);
+			  var randomSongId = songIds[index];
+			  alert(index);
+			  $('#play_key').val(randomSongId);
+			  apiswf.rdio_play($('#play_key').val());
+		  }
+	  }
 	  });
 });
 

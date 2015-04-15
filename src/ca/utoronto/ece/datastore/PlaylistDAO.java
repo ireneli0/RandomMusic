@@ -1,6 +1,7 @@
 package ca.utoronto.ece.datastore;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -106,38 +107,23 @@ public class PlaylistDAO {
 		}
 		return results;
 	}
-	
-	//find all songs by playlist
-	public Set<Song> findAllSongsByPlaylist(Playlist playlist){
-		Set<Song> songs = null;
-		try{
-			em = emf.createEntityManager();
-			em.getTransaction().begin();
-			Query query = em.createQuery("SELECT p from PlaylistLine p WHERE playlist = :currentPlaylist");
-			query.setParameter("currentPlaylist", playlist);
-			Set <PlaylistLine>results = (Set<PlaylistLine>)query.getResultList();
-			for(PlaylistLine p :results){
-				songs.add(p.getSong());
-			}
-			
-			em.getTransaction().commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			em.getTransaction().rollback();
-			
-		}finally{
-			em.close();
-		}
-		return songs;
-	}
 
-	//delete song(playlistline) from playlist
-	public void deleteSongFromPlaylist(PlaylistLine playlistLine, Playlist playlist){
+
+	//delete a single song(playlistline) from playlist
+	public void deleteSongFromPlaylist(String songId, Playlist playlist){
 		try{
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
-			
-			
+			Playlist pl = em.find(Playlist.class, playlist.getId());
+			//Set<PlaylistLine> lines= pl.getPlaylistLines();
+			Iterator<PlaylistLine> iterator = pl.getPlaylistLines().iterator();
+			while (iterator.hasNext()) {
+				PlaylistLine l = iterator.next();
+			    if (l.getSong().getSongId().equals(songId)) {
+			        iterator.remove();
+			    }
+			}
+			//Query query = em.createQuery("SELECT p from PlaylistLine p where p.songId='"+songId+"'");
 			
 			em.getTransaction().commit();
 			
@@ -150,7 +136,7 @@ public class PlaylistDAO {
 		}
 	}
 	
-	//find all playlist by user id
+	//find a single playlist by user id and playlistName
 	public Playlist getPlaylistById(String userId,String playlistName){
 		Playlist playlist = new Playlist();
 		try{
@@ -178,4 +164,31 @@ public class PlaylistDAO {
 		return playlist;
 	}
 	
+/*	//find a single playlistLine by songId and playlistName
+	public Playlist getPlaylistLineById(String songId,Playlist playlist){
+		PlaylistLine playlistLine = new PlaylistLine();
+		try{
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			TypedQuery<Playlist> query = em.createQuery("SELECT p FROM Playlist p WHERE p.userId='"+songId+"'"+"and p.name='"+playlistName+"'", Playlist.class);
+			playlist = query.getSingleResult();
+			
+			//dummy operations for lazy fetching 
+			for(PlaylistLine p: playlist.getPlaylistLines()){
+				p.getSong().getName();
+
+			}
+			em.detach(playlist);
+
+			em.getTransaction().commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			
+		}finally{
+			em.close();
+		}
+		return playlist;
+	}*/
 }

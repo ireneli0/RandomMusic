@@ -1,6 +1,8 @@
 package ca.utoronto.ece.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ca.utoronto.ece.datastore.PlaylistDAO;
 import ca.utoronto.ece.entity.Playlist;
+import ca.utoronto.ece.entity.PlaylistLine;
 
 import com.google.appengine.api.users.User;
 
@@ -33,9 +36,8 @@ public class DeleteSongFromPlaylistServlet extends HttpServlet {
 		PlaylistDAO playlistDao = new PlaylistDAO();
 		Playlist currentPlaylist = playlistDao.getPlaylistById(user.getEmail(), currentPlaylistName);
 		
-		//delete
-		//..
-		//
+		playlistDao.deleteSongFromPlaylist(songId, currentPlaylist);
+		
         response.setContentType("text/plain");
         response.getWriter().write("Delete "+songName+" from playlist "+currentPlaylistName+"...");
 

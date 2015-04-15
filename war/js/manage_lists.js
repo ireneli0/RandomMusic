@@ -12,13 +12,14 @@ $(document).ready(function() {
           },
           success : function() {
         	  location.reload();
+        	  
           }
       });
   }); 
   
   $('.someClass').click(function(){
 	  var songId = $(this).attr('id');
-	  
+	  var playlistName = $('#currentPlaylistName').text();
       $.ajax({
           url : '/DeleteSongFromPlaylistServlet?songId='+songId,
           data : {
@@ -26,8 +27,18 @@ $(document).ready(function() {
         	  songName:$('#songName').text()
           },
           success : function(responseText) {
-        	  location.reload();
+        	  
         	  $('#ajaxGetSongsOfPlaylist').text(responseText);
+      
+		      $.ajax({
+		          url : '/DisplaySongsOfPlaylist?playlistName='+playlistName,
+		          data : {
+		
+		          },
+		          success : function() {
+		        	  location.reload();
+		          }
+		      })
           }
       });
   }); 

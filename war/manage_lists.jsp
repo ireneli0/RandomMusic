@@ -47,7 +47,7 @@
     <h2 style="line-height:0.1px;color:#666666">My PlayLists</h2>
     <p style="color:#cccccc">___________________</p>
     
-    <div style="margin-right:50px;">
+    <div style="margin-right:100px;">
     <%
       	List<Playlist> playlists  = (List<Playlist>)request.getSession().getAttribute("playlists");
       if(playlists==null){
@@ -69,15 +69,14 @@
   <div class="playlists">
       <table class="showContents" cellspacing="0px">
 
-
             
     <%
-      	Set<Song> songs  = (HashSet<Song>)request.getSession().getAttribute("songs");
+      	Set<Song> songsForDisplay  = (HashSet<Song>)request.getSession().getAttribute("songsForDisplay");
     	String currentPlaylistName = (String)request.getSession().getAttribute("currentPlaylistName");
-      if(songs==null){
+      if(songsForDisplay==null){
     	  
       }else{
-    	  for(Song s: songs){
+    	  for(Song s: songsForDisplay){
       %>
 		<tr>
             <td class="showContents_img">
@@ -88,7 +87,7 @@
                <p style="margin-left:10px;font-size:16px" id="songName"><%=s.getName() %></p>
                <p style="margin-left:13px;font-size:13px;line-height:0.01;"id="singerName"><%=s.getSinger() %></p>
                <p style="margin-left:13px;font-size:13px" id="albumName"><%=s.getAlbum() %></p>
-               <p style="display=none" id="currentPlaylistName"><%=currentPlaylistName %></p>
+               <p id="currentPlaylistName"><%=currentPlaylistName %></p>
             </td>
             <td>
                <a href="#"><img class=someClass src="Resource/delete.png" id=<%=s.getSongId() %> alt="delete" height="50" style="margin-left:23px;margin-top:10px;"></a>

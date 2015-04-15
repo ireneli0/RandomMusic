@@ -39,7 +39,7 @@ public class AddSongToPlaylistServlet extends HttpServlet {
 		playlistDao.addSongToPlaylist(songId, name, singer, image, album, currentPlaylist);
 		
         response.setContentType("text/plain");
-        response.getWriter().write(songId+" "+name+" "+singer+" "+album+" "+image+"\n"+playlistName+" "+currentPlaylist.getName()+" " +currentPlaylist.getUserId()+" "+currentPlaylist.getId());
+        response.getWriter().write("Added "+name+" into playlist "+playlistName);
 		
 	}
 }
